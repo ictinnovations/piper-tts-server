@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "piper-tts-server"
-version = "0.1.0"
+version = "0.1.1"
 description = "Paced, streaming Piper (+ElevenLabs) TTS microservice for real-time voice pipelines (Asterisk AudioSocket, RTP, WebSocket)."
 readme = "README.md"
 license = { text = "MIT" }

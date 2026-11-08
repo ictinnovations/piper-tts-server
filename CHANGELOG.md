@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 - 2026-11-08
+
+- Fix `/synthesize` and `/synthesize/stream` failing with
+  `wave.Error: # channels not specified` on piper-tts 1.3 and later (#1).
+  Those releases moved WAV output to `PiperVoice.synthesize_wav()`; the server
+  now uses it when present and still supports piper-tts 1.2.
+- CI also runs on Python 3.13.
+
 ## 0.1.0 — 2026-08-13
 
 Initial release. Extracted and generalized from the ICTContact AI Voice Agent

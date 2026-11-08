@@ -204,7 +204,14 @@ class StreamingTTS:
         def _synth() -> bytes:
             buf = io.BytesIO()
             with wave.open(buf, "wb") as wf:
-                self._voice.synthesize(text, wf)
+                # piper-tts >= 1.3 (piper1-gpl) writes WAV via synthesize_wav();
+                # its synthesize() now returns audio chunks and leaves the file
+                # headerless ("# channels not specified"). 1.2 only has synthesize().
+                synth_wav = getattr(self._voice, "synthesize_wav", None)
+                if synth_wav is not None:
+                    synth_wav(text, wf)
+                else:
+                    self._voice.synthesize(text, wf)
             buf.seek(0)
             with wave.open(buf) as wf:
                 return wf.readframes(wf.getnframes())
